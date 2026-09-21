@@ -5,11 +5,11 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { FailedWriteLog } from "../../components/settings/FailedWriteLog.tsx";
 import { signOut } from "../../lib/auth.ts";
 import { listEntities, type Entity } from "../../lib/entities.ts";
 import { ENV } from "../../lib/env.ts";
 import { getProfile, type AccountProfile } from "../../lib/profile.ts";
-import { FailedWriteLog } from "../components/settings/FailedWriteLog.tsx";
 
 /**
  * Settings — the Command Center design's 1f.

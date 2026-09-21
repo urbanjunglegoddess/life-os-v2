@@ -1,0 +1,8 @@
+/* App-wide global styling. This file is required by the Expo root layout. */
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background: #0b0d10;
+}

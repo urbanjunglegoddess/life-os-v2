@@ -2,8 +2,8 @@ import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { BiometricGate } from "../components/journal/BiometricGate.tsx";
-import { JournalFlow } from "../components/journal/JournalFlow.tsx";
+import { BiometricGate } from "../../components/journal/BiometricGate.tsx";
+import { JournalFlow } from "../../components/journal/JournalFlow.tsx";
 
 export default function JournalRoute() {
   /*

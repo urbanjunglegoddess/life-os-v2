@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { SignInFlow } from "./components/auth/SignInFlow.tsx";
+import { SignInFlow } from "../components/auth/SignInFlow.tsx";
 
 export default function SignInRoute() {
   return (

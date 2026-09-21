@@ -2,9 +2,9 @@ import { COLOR, RADIUS, SPACE, TARGET } from "@life-os/tokens";
 import { useEffect, useState } from "react";
 import { Pressable, Text, TextInput, View } from "react-native";
 
-import { createAction } from "../../../lib/actions.ts";
-import { listAreas, type Area } from "../../../lib/areas.ts";
-import { resolveWhen, type WhenChoice } from "../../../lib/captureInput.ts";
+import { createAction } from "../../lib/actions.ts";
+import { listAreas, type Area } from "../../lib/areas.ts";
+import { resolveWhen, type WhenChoice } from "../../lib/captureInput.ts";
 import { FlowScreen } from "../flow/FlowScreen.tsx";
 
 /**

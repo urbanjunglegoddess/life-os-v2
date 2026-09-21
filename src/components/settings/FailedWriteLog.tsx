@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
-import { readFailedWrites } from "../../../lib/writeLog.ts";
+import { readFailedWrites } from "../../lib/writeLog.ts";
 import {
     failedWriteWhen,
     writeFailureKindLabel,
     writeOpLabel,
     type WriteLogEntry,
-} from "../../../lib/writeLogEntry.ts";
+} from "../../lib/writeLogEntry.ts";
 
 /**
  * The failed-write log, read back — ADR-0012, build order step 9.

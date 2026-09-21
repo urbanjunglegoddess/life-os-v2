@@ -7,8 +7,8 @@ import {
     listJournalPrompts,
     recordJournalResponse,
     type JournalPrompt,
-} from "../../../lib/journal.ts";
-import { localDay } from "../../../lib/localDay.ts";
+} from "../../lib/journal.ts";
+import { localDay } from "../../lib/localDay.ts";
 import { EscapeHatchList } from "../flow/EscapeHatchList.tsx";
 import { Flow } from "../flow/Flow.tsx";
 import { FlowAction } from "../flow/FlowAction.tsx";
