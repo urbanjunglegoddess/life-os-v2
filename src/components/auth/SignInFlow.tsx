@@ -1,9 +1,8 @@
 import { COLOR, RADIUS, SPACE, TARGET } from "@life-os/tokens";
 import { useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
 
 import { sendEmailOtp, verifyEmailOtp } from "../../lib/auth.ts";
-import { FlowScreen } from "../flow/FlowScreen.tsx";
 
 /**
  * Email OTP sign-in — the flow primitive's first real caller.
@@ -69,7 +68,28 @@ export function SignInFlow({ onSignedIn }: { onSignedIn: () => void }) {
 
   return (
     <View className="flex-1 bg-base">
-      <View className="flex-1 justify-center px-4 pb-6 pt-8">
+      <View className="flex-1 justify-center px-4 pb-8 pt-8">
+        <View className="mb-6 flex-row items-center justify-between">
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Go back"
+            onPress={() => {
+              if (!isEmail) {
+                setStage("email");
+                setError(null);
+              }
+            }}
+            disabled={isEmail}
+            style={{ opacity: isEmail ? 0.35 : 1 }}
+          >
+            <Text className="text-base font-medium text-primary">Back</Text>
+          </Pressable>
+
+          <Text className="text-sm text-muted">
+            {isEmail ? "Step 1 of 2" : "Step 2 of 2"}
+          </Text>
+        </View>
+
         <View className="mb-6 items-center">
           <View className="mb-3 h-14 w-14 items-center justify-center rounded-2xl bg-accent-primary/15">
             <Text className="text-xl font-semibold text-accent-primary">L</Text>
@@ -79,7 +99,7 @@ export function SignInFlow({ onSignedIn }: { onSignedIn: () => void }) {
           </Text>
         </View>
 
-        <View className="rounded-[28px] border border-border-meaningful bg-surface p-5 shadow-sm">
+        <View className="rounded-[28px] border border-meaningful bg-surface p-5 shadow-sm">
           <Text
             accessibilityRole="header"
             className="text-3xl font-semibold leading-tight text-primary"
@@ -93,7 +113,7 @@ export function SignInFlow({ onSignedIn }: { onSignedIn: () => void }) {
           </Text>
 
           <View className="mt-6 gap-4">
-            <View className="rounded-2xl border border-border-meaningful bg-surface/80 px-4 py-3">
+            <View className="rounded-2xl border border-meaningful bg-surface/80 px-4 py-3">
               <Text className="mb-1 text-xs font-medium uppercase tracking-[0.12em] text-muted">
                 {isEmail ? "Email address" : "Verification code"}
               </Text>
@@ -110,6 +130,7 @@ export function SignInFlow({ onSignedIn }: { onSignedIn: () => void }) {
                   autoCorrect={false}
                   accessibilityLabel="Email address"
                   style={inputStyle}
+                  returnKeyType="done"
                 />
               ) : (
                 <TextInput
@@ -122,6 +143,7 @@ export function SignInFlow({ onSignedIn }: { onSignedIn: () => void }) {
                   autoComplete="one-time-code"
                   accessibilityLabel="One-time code"
                   style={inputStyle}
+                  returnKeyType="done"
                 />
               )}
             </View>
@@ -134,32 +156,24 @@ export function SignInFlow({ onSignedIn }: { onSignedIn: () => void }) {
           </View>
         </View>
 
-        <View className="mt-6">
-          <FlowScreen
-            position={isEmail ? 1 : 2}
-            total={2}
-            canGoBack={!isEmail}
-            onBack={() => {
-              setStage("email");
-              setError(null);
-            }}
-            title={isEmail ? "Welcome back" : "Verify your email"}
-            context={
-              isEmail
-                ? "Sign in with your email to receive a secure one-time code."
-                : `We sent a code to ${email}. Enter it below to finish signing in.`
-            }
-            primary={{
-              label: busy ? "Working…" : isEmail ? "Continue" : "Sign in",
-              hint: isEmail
-                ? "Emails a one-time sign-in code"
-                : "Verifies the code and signs you in",
-              onPress: () => void (isEmail ? submitEmail() : submitCode()),
-              disabled:
-                busy || (isEmail ? email.trim() === "" : code.trim() === ""),
-            }}
-          />
-        </View>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={isEmail ? "Continue with email" : "Verify sign in code"}
+          onPress={() => void (isEmail ? submitEmail() : submitCode())}
+          disabled={busy || (isEmail ? email.trim() === "" : code.trim() === "")}
+          style={{
+            opacity: busy || (isEmail ? email.trim() === "" : code.trim() === "") ? 0.5 : 1,
+            minHeight: TARGET["tap-target-min"],
+            marginTop: SPACE["space-6"],
+            backgroundColor: COLOR["accent-primary"],
+            borderRadius: RADIUS["radius-md"],
+          }}
+          className="items-center justify-center"
+        >
+          <Text className="text-base font-semibold text-on-warm">
+            {busy ? "Working…" : isEmail ? "Continue" : "Sign in"}
+          </Text>
+        </Pressable>
       </View>
     </View>
   );

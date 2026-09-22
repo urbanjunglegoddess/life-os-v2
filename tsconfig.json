@@ -17,7 +17,8 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
   ],
   "exclude": ["example/**", "**/*.test.ts", "**/*.test.tsx"]
 }

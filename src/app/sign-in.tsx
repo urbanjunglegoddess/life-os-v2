@@ -6,7 +6,7 @@ import { SignInFlow } from "../components/auth/SignInFlow.tsx";
 export default function SignInRoute() {
   return (
     <SafeAreaView className="flex-1 bg-base">
-      <SignInFlow onSignedIn={() => router.replace("/")} />
+      <SignInFlow onSignedIn={() => router.replace("/today")} />
     </SafeAreaView>
   );
 }

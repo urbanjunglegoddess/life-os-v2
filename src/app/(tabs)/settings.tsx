@@ -167,7 +167,7 @@ export default function SettingsRoute() {
             label="Sign out"
             hint="Ends this session on the device and returns to sign-in"
             onPress={() => {
-              void signOut().then(() => router.replace("/"));
+              void signOut().then(() => router.replace("/sign-in"));
             }}
           />
         </Section>
