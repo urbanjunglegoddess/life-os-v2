@@ -8,7 +8,7 @@ import {
   cardContext,
   dueLabel,
   type TodayRow,
-} from './todayQueue.ts';
+} from '../src/lib/todayQueue.ts';
 
 const NOW = new Date('2026-09-10T09:00:00.000-04:00');
 

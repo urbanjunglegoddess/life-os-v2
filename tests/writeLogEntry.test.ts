@@ -11,7 +11,7 @@ import {
   trimWriteLog,
   writeFailureKindLabel,
   writeOpLabel,
-} from './writeLogEntry.ts';
+} from '../src/lib/writeLogEntry.ts';
 
 /**
  * ADR-0012's required mitigation is the instrument the beta week is read with,

@@ -5,7 +5,7 @@ import {
   CaptureInputSchema,
   resolveWhen,
   type WhenChoice,
-} from './captureInput.ts';
+} from '../src/lib/captureInput.ts';
 
 describe('a capture needs only a title (§5.5)', () => {
   test('title alone is a valid, complete capture', () => {
