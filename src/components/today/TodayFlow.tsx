@@ -1,5 +1,6 @@
 import { TARGET } from "@life-os/tokens";
 import * as Linking from "expo-linking";
+import { ObserveInteractiveMarker } from "expo-observe";
 import { useCallback, useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 
@@ -80,7 +81,14 @@ export function TodayFlow({ onDone }: { onDone: () => void }) {
   /* Keyed on the attempt so a retry mounts a fresh flow: the machine takes its
      steps at creation, and a reload with different cards must not land on the
      old sequence's index. */
-  return <TodayQueueFlow key={attempt} queue={queue} onDone={onDone} />;
+  return (
+    <>
+      <TodayQueueFlow key={attempt} queue={queue} onDone={onDone} />
+      {/* Today counts as interactive once the queue has loaded, not when the
+          loading card first paints — that moment is what Observe records as TTI. */}
+      <ObserveInteractiveMarker />
+    </>
+  );
 }
 
 function TodayQueueFlow({

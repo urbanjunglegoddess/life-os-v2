@@ -2,6 +2,7 @@
 import '../global.css';
 
 import { COLOR } from '@life-os/tokens';
+import { Observe, ObserveRoot } from 'expo-observe';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
@@ -9,7 +10,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { startSessionAutoRefresh } from '../lib/supabase';
 
-export default function RootLayout() {
+// Per-route navigation metrics for EAS Observe. Module scope on purpose:
+// integrations cannot be configured once a screen has mounted.
+Observe.configure({
+  integrations: { 'expo-router': true },
+});
+
+function RootLayout() {
   // Token refresh is driven off app foreground/background rather than a bare
   // timer, which a backgrounded RN app does not reliably service. Mounted once,
   // at the root, so there is exactly one subscription for the app's lifetime.
@@ -33,3 +40,6 @@ export default function RootLayout() {
     </SafeAreaProvider>
   );
 }
+
+// Wrapping the root is what lets EAS Observe measure time to first render.
+export default ObserveRoot.wrap(RootLayout);
