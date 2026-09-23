@@ -13,7 +13,7 @@ import {
   total,
   type FlowEvent,
   type FlowState,
-} from './flowMachine.ts';
+} from '../src/components/flow/flowMachine.ts';
 
 /**
  * One test per non-negotiable in BUILD-SPEC §5.3. These are product rules, not

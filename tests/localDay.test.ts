@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { localDay } from './localDay.ts';
+import { localDay } from '../src/lib/localDay.ts';
 
 /**
  * `localDay` decides which day an entry files under, and getting it wrong is
